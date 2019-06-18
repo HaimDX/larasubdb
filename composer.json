@@ -1,0 +1,26 @@
+{
+    "name": "haimdx/larasubdb",
+    "description": "Laravel Integration of SUB DB API",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anass Arakia",
+            "email": "dryben82@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "haimdx\\larasubdb\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "haimdx\\larasubdb\\LaraSubDBServiceProvider"
+            ]
+        }
+    }
+}
