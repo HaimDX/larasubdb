@@ -9,3 +9,4 @@
 - [x] Created Service
 - [x] Created Config
 - [x] Published to Packagist
+- [x] added versioning for packagist
