@@ -10,7 +10,9 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "ixudra/curl": "6.*"
+    },
     "autoload": {
         "psr-4": {
             "haimdx\\larasubdb\\": "src/"

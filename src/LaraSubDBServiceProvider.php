@@ -40,7 +40,7 @@ class LaraSubDBServiceProvider extends ServiceProvider
 
         //publish config file
         $this->publishes([
-            __DIR__.'/config/larasubdb.php' =>  config_path('larasubdb.php'),
+            __DIR__ . '/config/main.php' =>  config_path('main.php'),
         ], 'config');
     }
 
@@ -54,4 +54,6 @@ class LaraSubDBServiceProvider extends ServiceProvider
             require_once $filename;
         }
     }
+
+
 }
