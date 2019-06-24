@@ -11,3 +11,4 @@
 - [x] Published to Packagist
 - [x] added versioning for packagist
 - [x] fixed autoloading and alias integration issue v2
+- [x] fixed facade binding
