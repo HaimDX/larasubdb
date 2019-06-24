@@ -14,18 +14,7 @@ class LaraSubDBServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //register larasubdb controller
-        $this->app->make('haimdx\larasubdb\LaraSubDBController');
 
-
-        //register facades
-        $this->app->bind('larasubdb',function(){
-            return new LaraSubDB();
-        });
-
-
-        //load helpers
-        //$this->loadHelpers();
     }
 
     /**
@@ -42,18 +31,16 @@ class LaraSubDBServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config/main.php' =>  config_path('main.php'),
         ], 'config');
+
+        //facade binding
+        $this->app->singleton(LaraSubDB::class, function () {
+            return new LaraSubDB();
+        });
+
+        $this->app->alias(LaraSubDB::class, 'larasubdb');
     }
 
-    /*
-     * Function to load all the helpers php classes from the helper folder
-     */
-    protected function loadHelpers()
-    {
-        foreach (glob(__DIR__.'/../Helpers/*.php') as $filename)
-        {
-            require_once $filename;
-        }
-    }
+
 
 
 }
