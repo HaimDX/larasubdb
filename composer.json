@@ -15,14 +15,17 @@
     },
     "autoload": {
         "psr-4": {
-            "haimdx\\larasubdb\\": "src/"
+            "HaimDX\\LaraSubDB\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "haimdx\\larasubdb\\LaraSubDBServiceProvider"
-            ]
+                "HaimDX\\LaraSubDB\\LaraSubDBServiceProvider"
+            ],
+            "aliases": {
+                "LaraSubDB": "HaimDX\\LaraSubDB\\Facades\\LaraSubDBFacade"
+            }
         }
     }
 }

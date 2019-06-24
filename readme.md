@@ -10,3 +10,4 @@
 - [x] Created Config
 - [x] Published to Packagist
 - [x] added versioning for packagist
+- [x] fixed autoloading and alias integration issue
