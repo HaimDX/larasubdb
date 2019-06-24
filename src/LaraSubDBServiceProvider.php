@@ -2,7 +2,7 @@
 
 namespace HaimDX\LaraSubDB;
 
-use haimdx\larasubdb\Services\LaraSubDB;
+use HaimDX\LaraSubDB\Services\LaraSubDB;
 use Illuminate\Support\ServiceProvider;
 
 class LaraSubDBServiceProvider extends ServiceProvider
