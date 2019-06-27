@@ -12,3 +12,4 @@
 - [x] added versioning for packagist
 - [x] fixed autoloading and alias integration issue v2
 - [x] fixed facade binding v2
+- [x] Added search, download functions
