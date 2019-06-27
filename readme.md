@@ -13,3 +13,5 @@
 - [x] fixed autoloading and alias integration issue v2
 - [x] fixed facade binding v2
 - [x] Added search, download functions
+- [x] Added configuration
+    - Remember to publish it using vendor:publish

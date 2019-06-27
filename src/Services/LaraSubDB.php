@@ -6,7 +6,7 @@ use Ixudra\Curl\Facades\Curl;
 
 class LaraSubDB
 {
-    public function dump()
+    protected  function dump()
     {
         dd( ('Laravel SUB DB API INTEGRATION LIBRARY By ANASS ARAKIA') );
     }
@@ -42,7 +42,8 @@ class LaraSubDB
     public static function searchSubDBForSubtitle($hash){
         //get url from config
         $api_url = config('main.api_url','http://api.thesubdb.com/');
-        $action = "search";        //make curl request and get the subtitle
+        $action = "search";
+        //make curl request and get the subtitle
         $subtitle = Curl::to($api_url."?action=".$action."&hash=".$hash)
              ->withOption('USERAGENT','SubDB/1.0 (PHPSubDB 0.1; http://github.com/)')
              ->withOption('RETURNTRANSFER', true)
@@ -65,7 +66,16 @@ class LaraSubDB
 
     }
 
-    public static function searchAndDownload($movie_name,$language){
+    public static function searchAndDownload($movie_name,$language = null){
+        //check if the ext is allowed
+        if( ! in_array( pathinfo($movie_name, PATHINFO_EXTENSION), config('larasubdb-main.allowedfiles'))){
+            return "file ext not supported";
+        }
+
+        //if language is empty, use the default language from the config
+        if( $language == null || empty($language)){
+            $language = config('larasubdb-main.defaultsubtitlelanguage');
+        }
         //get hash
         $hash = LaraSubDB::getSubDBHash($movie_name);
         //search for available subtitle
@@ -73,8 +83,10 @@ class LaraSubDB
         //check if requested language exist in the result
         $available_languages = explode(',',$available_languages);
         if( in_array($language,$available_languages)){
-            //download the subtitle
-            return LaraSubDB::downloadsubtitle($hash,$language);
+            //prepare the subtitle
+            $raw_sub =  LaraSubDB::downloadsubtitle($hash,$language);
+            $subtitle = (substr($raw_sub,0,1) == '?') ? substr($raw_sub,1,strlen($raw_sub)-1) : $raw_sub;
+            return $subtitle;
         }else{
             return "Requested language not found";
         }

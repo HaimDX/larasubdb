@@ -15,7 +15,9 @@ class LaraSubDBServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->mergeConfigFrom(
+            __DIR__ . '/config/larasubdbconfig.php', 'larasubdb-main'
+        );
     }
 
     /**
@@ -30,7 +32,7 @@ class LaraSubDBServiceProvider extends ServiceProvider
 
         //publish config file
         $this->publishes([
-            __DIR__ . '/config/main.php' =>  config_path('main.php'),
+            __DIR__ . '/config' =>  config_path('larasubdb'),
         ], 'config');
 
         //facade binding
