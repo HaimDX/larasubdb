@@ -15,3 +15,5 @@
 - [x] Added search, download functions
 - [x] Added configuration
     - Remember to publish it using vendor:publish
+- [x] Added download ability. The function "searchAndDownload" will store the subtitle in the public folder and return
+      URL

@@ -3,6 +3,7 @@
 
 namespace haimdx\larasubdb\Services;
 use Ixudra\Curl\Facades\Curl;
+use Illuminate\Support\Facades\Storage;
 
 class LaraSubDB
 {
@@ -86,10 +87,20 @@ class LaraSubDB
             //prepare the subtitle
             $raw_sub =  LaraSubDB::downloadsubtitle($hash,$language);
             $subtitle = (substr($raw_sub,0,1) == '?') ? substr($raw_sub,1,strlen($raw_sub)-1) : $raw_sub;
-            return $subtitle;
+            //store file to the public folder and return public url
+            $download_url = LaraSubDB::storeSubtitle(substr($movie_name,0,-4),$subtitle);
+            return $download_url;
         }else{
             return "Requested language not found";
         }
+
+    }
+
+    private static function storeSubtitle($filename,$content){
+        //public folder example:  C:\Users\username\PhpstormProjects\larasubdb\storage\app\subtitles
+        \Storage::put("subtitles".DIRECTORY_SEPARATOR.$filename.".srt",$content);
+        //return public url. Must be served as a download link
+        return storage_path("app". DIRECTORY_SEPARATOR . "subtitles" . DIRECTORY_SEPARATOR.  $filename );
 
     }
 
